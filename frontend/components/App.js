@@ -6,10 +6,11 @@ const api_key = 'DEMO_KEY'
 const URL = `https://api.nasa.gov/planetary/apod?api_key=${api_key}`
 
 
-function App() {
+export default function App() {
   const [apod, setApod] = useState()
+
   useEffect(() => {
-    function fetchPhoto() {
+    function fetchAPOD() {
       axios.get(URL)
       .then(res => {
         console.log(res.data)
@@ -19,7 +20,7 @@ function App() {
         console.log(err.message)
       })
     }
-    // fetchPhoto()
+    // fetchAPOD()
     setApod({
       "date": "2024-04-11",
       "explanation": "Start at the upper left above and you can follow the progress of April 8's total eclipse of the Sun in seven sharp, separate exposures. The image sequence was recorded with a telescope and camera located within the narrow path of totality as the Moon's shadow swept across Newport, Vermont, USA. At center is a spectacular view of the solar corona. The tenuous outer atmosphere of the Sun is only easily visible to the eye in clear dark skies during the total eclipse phase. Seen from Newport, the to...",
@@ -30,6 +31,7 @@ function App() {
       "url": "https://apod.nasa.gov/apod/image/2404/2024_Eclipse_05XTan1024.jpg"
     })
   }, [])
+
   if (!apod) return "fetching photo of the day.."
   return (
     <section>
@@ -43,4 +45,4 @@ function App() {
   )
 }
 
-export default App
+
